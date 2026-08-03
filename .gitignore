@@ -1,0 +1,43 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
+
+# Type checking / caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# LangGraph / LangSmith local artifacts
+.langgraph_api/
