@@ -48,8 +48,8 @@ The agent takes a user request, clarifies scope if needed, writes a research bri
 1. **Clone the repo and enter the project directory**
 
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-directory>
+   git clone https://github.com/magicschoolm/deep_agent
+   cd deep_agent
    ```
 
 2. **Create and activate a virtual environment**
