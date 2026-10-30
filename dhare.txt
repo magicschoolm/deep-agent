@@ -1,0 +1,67 @@
+MODEL CONTEXT PROTOCOL (MCP) - SUMMARY
+========================================
+
+What is MCP?
+MCP (Model Context Protocol) is an open standard, created by Anthropic,
+that defines how AI applications (like Claude) connect to external data
+sources, tools, and systems. It works like a universal adapter: instead
+of building a custom integration for every app-to-tool connection, MCP
+gives one common protocol that any AI client and any tool server can
+speak.
+
+Why it exists
+Before MCP, connecting an AI assistant to outside systems (files,
+databases, APIs, business apps) required custom, one-off integration
+code for each pairing. This did not scale. MCP standardizes the
+connection layer so tools built once can be used by any MCP-compatible
+AI application.
+
+Core Architecture
+MCP follows a client-server model:
+- MCP Host: The AI application the user interacts with (e.g. Claude
+  Desktop, an IDE, a chat app).
+- MCP Client: Lives inside the host; manages a 1:1 connection to an
+  MCP server.
+- MCP Server: A lightweight program that exposes specific capabilities
+  (tools, data, prompts) over the protocol.
+
+Communication happens over JSON-RPC 2.0, using either:
+- stdio (local processes, fast and simple)
+- HTTP/SSE (remote servers over the network)
+
+Key Capabilities Exposed by a Server
+1. Tools - Functions the AI can call to take action (e.g. create a
+   task, run a query, send an email).
+2. Resources - Read-only data the AI can pull into context (files,
+   database records, API responses).
+3. Prompts - Reusable prompt templates the server can offer to guide
+   the AI's use of its tools and resources.
+
+Typical Workflow
+1. Host app starts and connects to one or more MCP servers.
+2. Client and server exchange capability info (a handshake).
+3. The AI model sees the available tools and resources and decides
+   when to use them based on the user's request.
+4. Server executes the requested action and returns a structured
+   result back to the model.
+
+Benefits
+- Reusability: Build a tool server once, use it across many AI apps.
+- Standardization: One protocol instead of N custom integrations.
+- Security and control: Servers can scope exactly what data or actions
+  are exposed, and users can approve tool use.
+- Ecosystem growth: Community and companies can publish MCP servers
+  (GitHub, Slack, databases, file systems, etc.) that any compatible
+  client can plug into.
+
+Common Use Cases
+- Connecting an AI assistant to a company's internal docs or database.
+- Letting an AI agent manage tasks in tools like Asana or Jira.
+- Giving an AI access to local files, git repos, or dev environments.
+- Building custom developer utility servers (e.g. your own MCP tools
+  package) that others can install and use.
+
+In short
+MCP is the USB-C port for AI applications: a single standard
+interface that lets any AI model plug into any tool or data source
+that speaks the protocol.
